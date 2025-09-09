@@ -1,0 +1,122 @@
+To use system commands (ls, cd, pwd ...) in class:
+>> $ls
+>> $pwd
+
+
+
+------------------
+Start/exit class:
+------------------
+>> class
+>> exit
+
+(weeds works within class, i.e. to use weeds, start class and use weeds commands inside class)
+
+------------------
+Get help on a command:
+------------------
+>> help plot
+
+------------------
+Select and show a spectrum (a spectrum is a file named "name_spectrum.alma"):
+------------------
+>> file in name_specrtum.alma
+>> find
+Needed to find all subfiles within the name_spectrum.alma file
+>> list
+List all the subfiles
+>> get f
+>> plot
+>> get n
+>> plot
+
+------------------
+Enable cursor to get local information on the spectrum:
+------------------
+>> draw
+The position where you click on the graphic window gives you the frequency ('rest frequency'),velocity, intensity (Antenna Temperature) and so on.
+
+------------------
+Make a zoom on the spectrum:
+------------------
+>> let mode x
+>> let mode y
+>> plot
+------------------
+Come back to full spectrum
+------------------
+>> let mode x tot
+>> let mode y tot
+>> plot
+
+------------------
+Measure noise level in the spectrum:
+------------------
+>> set window
+Enables interactive cursors to setup window(s) to be avoided for noise level calculation
+>> draw window
+Shows the previously defined window(s)
+>> base 0 /plot
+Subtracts from the current spectrum a polynomial baseline of degree 0
+>> plot
+--> print the result on the terminal, the noise level is given by 'rms', in units of the current spectrum (i.e. in K if the spectrum is in K, in Jy/beam otherwise)
+
+------------------
+Fit gaussian to a line:
+------------------
++ First make a zoom around the line you are interested in
++ get the line peak frequency using the 'draw' command
+>> modify frequency 'XXXXX'
+Re-center the line at the correct frequency
+>> set unit v f
+Change the x-axis to velocity (use 'set unit f v' if you want to come back to frequency axis)
+>> set window
+>> base 0 /pl
+>> plot
+>> method gauss
+>> lines 1
+Enable cursor to select the edge of the line you want to fit
+>> minimize
+Does the gaussian fit and outputs results on the terminal
+>> visu
+Plot the resulting gaussian
+
+
+------------------
+Change the color of your pen
+------------------
+>> pen /col black 
+>> pen /col red
+... (basically same color names as in python)
+
+
+
+------------------
+Memorize a spectrum and plot it on top of another one
+------------------
+>> memorize SPEC1
+Memorize a spectrum with name SPEC1
+>> retrieve SPEC1
+>> spec
+Plot a spectrum on top of another one. Before, make sure x and y axes are identifcal for both spectra you want to compare, using set mode x and set mode y 
+
+
+
+
+
+
+
+--------------------
+-- WEEDS commands --
+--------------------
+>> use in cdms
+Use the online cdms database to find lines
+>> lid /species "CH3OH, vt=0-2" /full
+Show all methanol lines in the current frequency window
+>> lid /species "CH3OH, vt=0-2" /full /energy 900 /aij 1e-5
+Show all lines from methanol with Energy level > 900 and Aij coefficient > 1e-5
+
+
+
+
+
